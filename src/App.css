@@ -179,17 +179,17 @@ button:hover {
 @media (max-width: 768px) {
   /* Reducir el tamaño de la fuente para mejorar la legibilidad */
   h2 {
-    font-size: 1.8rem;
+    font-size: 1.7rem;
     line-height: 1.2;
   }
 
   h3 {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     line-height: 1.2;
   }
 
   p {
-    font-size: 1rem;
+    font-size: 0.9rem;
     line-height: 1.5;
   }
 

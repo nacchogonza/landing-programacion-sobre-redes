@@ -44,9 +44,8 @@ const LandingPage = () => {
             modelo, es decir, la Capa de Acceso a la Red
           </h3>
           <div className="navigation-buttons">
-            <button onClick={() => scrollToSection(section1Ref)}>Volver</button>
             <button onClick={() => scrollToSection(section3Ref)}>
-              Siguiente punto
+              ¡Vamos al primer paso!
             </button>
           </div>
         </div>
