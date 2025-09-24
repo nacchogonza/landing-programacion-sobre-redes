@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import "./App.css";
 
 const LandingPage = () => {
@@ -10,6 +10,45 @@ const LandingPage = () => {
   const section6Ref = useRef(null);
   const section7Ref = useRef(null);
   const section8Ref = useRef(null);
+  const section9Ref = useRef(null);
+  const section10Ref = useRef(null);
+  const section11Ref = useRef(null);
+  const section12Ref = useRef(null);
+  const videoRef = useRef(null);
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const baseVideoUrl =
+    "https://www.youtube.com/embed/6tlSx0jkuLM?si=tCvHqbuznGg6PLH9?rel=0&mute=1";
+
+  const videoSrc = isVisible ? `${baseVideoUrl}&autoplay=1` : baseVideoUrl;
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsVisible(true);
+        } else {
+          setIsVisible(false);
+        }
+      },
+      {
+        root: null,
+        rootMargin: "0px",
+        threshold: 0.5,
+      }
+    );
+
+    if (section11Ref.current) {
+      observer.observe(section11Ref.current);
+    }
+
+    return () => {
+      if (section11Ref.current) {
+        observer.unobserve(section11Ref.current);
+      }
+    };
+  }, [section11Ref]);
 
   const scrollToSection = (ref) => {
     if (ref.current) {
@@ -145,8 +184,9 @@ const LandingPage = () => {
           <h2>Viaje de Vuelta 📥</h2>
           <h3>
             Ahora vamos a ver el recorrido de la Respuesta desde la capa mas
-            externa, es decir, la Capa de Aplicación hacia la mas interna del
-            modelo, es decir, la Capa de Acceso a la Red
+            interna, es decir, la Capa de Acceso a la Red hacia la mas externa
+            del modelo, es decir, la Capa de Aplicación donde el usuario lo
+            recibirá
           </h3>
           <div className="navigation-buttons">
             <button onClick={() => scrollToSection(section6Ref)}>Volver</button>
@@ -154,6 +194,104 @@ const LandingPage = () => {
               Siguiente punto
             </button>
           </div>
+        </div>
+      </section>
+
+      <section ref={section8Ref} className="section dark-section">
+        <div className="content">
+          <h2>Capa de Acceso a la Red 📡</h2>
+          <p>El paquete llega al servidor de YouTube a través de la red.</p>
+          <div className="navigation-buttons">
+            <button onClick={() => scrollToSection(section7Ref)}>Volver</button>
+            <button onClick={() => scrollToSection(section9Ref)}>
+              Siguiente punto
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section ref={section9Ref} className="section light-section">
+        <div className="content">
+          <h2>Capa de Internet 🌍</h2>
+          <p>
+            El servidor recibe el paquete y se da cuenta, gracias a la dirección
+            IP, de que el paquete es para él. El protocolo IP se encarga de
+            recibirlo.
+          </p>
+          <div className="navigation-buttons">
+            <button onClick={() => scrollToSection(section8Ref)}>Volver</button>
+            <button onClick={() => scrollToSection(section10Ref)}>
+              Siguiente punto
+            </button>
+          </div>
+        </div>
+      </section>
+
+      {/* Sección 3: Capa de Transporte */}
+      <section ref={section10Ref} className="section dark-section">
+        <div className="content">
+          <h2>Capa de Transporte 📦</h2>
+          <p>
+            El servidor de YouTube, usando el protocolo TCP, lee los segmentos
+            de la petición, los reordena y confirma que el pedido está completo.
+            Luego, genera una respuesta con los segmentos del video que te va a
+            enviar. Y para cada segmento que envía, espera que el celular le dé
+            una confirmación de que lo recibió correctamente.
+          </p>
+          <div className="navigation-buttons">
+            <button onClick={() => scrollToSection(section9Ref)}>Volver</button>
+            <button onClick={() => scrollToSection(section11Ref)}>
+              Siguiente punto
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section ref={section11Ref} className="section light-section">
+        <div className="content">
+          <h2>Capa de Aplicación 👩‍💻</h2>
+          <p>
+            El video viaja de vuelta, y el celular lo reensambla y lo reproduce
+            en la pantalla. WhatsApp le pasa el video al reproductor interno del
+            celular para que lo puedas ver. El video se ve fluido gracias a que
+            el protocolo TCP aseguró que todos los paquetes llegaron en orden.
+          </p>
+          <div className="video-container">
+            <iframe
+              ref={videoRef}
+              width="560"
+              height="315"
+              src={videoSrc}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+          <div className="navigation-buttons">
+            <button onClick={() => scrollToSection(section10Ref)}>
+              Volver
+            </button>
+            <button onClick={() => scrollToSection(section12Ref)}>
+              Siguiente punto
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section ref={section12Ref} className="section dark-section">
+        <div className="content">
+          <h2>El viaje de los datos a través de Internet</h2>
+          <h3>Un recorrido visual por las capas del modelo TCP/IP.</h3>
+          <p>
+            El objetivo es que podamos seguir el recorrido de los datos a través
+            de este popular modelo, tomando como ejemplo un caso de uso muy
+            común: un usuario que recibe un video de Youtube y abre el link para
+            poder visualizarlo
+          </p>
+          <button onClick={() => scrollToSection(section1Ref)}>
+            ¡Volver al inicio!
+          </button>
         </div>
       </section>
     </div>
