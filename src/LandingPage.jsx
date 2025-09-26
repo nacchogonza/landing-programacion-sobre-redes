@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./App.css";
+import NetworkTraffic from "./NetworkTraffic";
 
 const LandingPage = () => {
   const section1Ref = useRef(null);
@@ -26,38 +27,25 @@ const LandingPage = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-        } else {
-          setIsVisible(false);
-        }
+        setIsVisible(entry.isIntersecting);
       },
-      {
-        root: null,
-        rootMargin: "0px",
-        threshold: 0.5,
-      }
+      { root: null, rootMargin: "0px", threshold: 0.5 }
     );
 
-    if (section11Ref.current) {
-      observer.observe(section11Ref.current);
-    }
+    if (section11Ref.current) observer.observe(section11Ref.current);
 
     return () => {
-      if (section11Ref.current) {
-        observer.unobserve(section11Ref.current);
-      }
+      if (section11Ref.current) observer.unobserve(section11Ref.current);
     };
   }, [section11Ref]);
 
   const scrollToSection = (ref) => {
-    if (ref.current) {
-      ref.current.scrollIntoView({ behavior: "smooth" });
-    }
+    if (ref.current) ref.current.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
     <div className="landing-container">
+      {/* Sección 1: Introducción */}
       <section ref={section1Ref} className="section dark-section">
         <div className="content">
           <h2>El viaje de los datos a través de Internet</h2>
@@ -68,12 +56,35 @@ const LandingPage = () => {
             común: un usuario que recibe un video de Youtube y abre el link para
             poder visualizarlo
           </p>
-          <button onClick={() => scrollToSection(section2Ref)}>
+
+          {/* Loop de NetworkTraffic ajustado */}
+          <div
+            style={{
+              margin: "1rem auto",
+              width: "60%",
+              maxHeight: "300px",
+              overflow: "hidden",
+            }}
+          >
+            <NetworkTraffic />
+          </div>
+
+          <button
+            style={{
+              display: "block",
+              margin: "1rem auto",
+              padding: "0.75rem 1.5rem",
+              fontSize: "1.2rem",
+              cursor: "pointer",
+            }}
+            onClick={() => scrollToSection(section2Ref)}
+          >
             ¡Empecemos!
           </button>
         </div>
       </section>
 
+      {/* Sección 2 */}
       <section ref={section2Ref} className="section light-section">
         <div className="content">
           <h2>Viaje de Ida 📤</h2>
@@ -90,6 +101,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Sección 3 */}
       <section ref={section3Ref} className="section dark-section">
         <div className="content">
           <h2>Capa de Aplicación 👩‍💻</h2>
@@ -111,7 +123,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Sección 3: Capa de Transporte */}
+      {/* Sección 4 */}
       <section ref={section4Ref} className="section light-section">
         <div className="content">
           <h2>Capa de Transporte 📦</h2>
@@ -135,7 +147,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Sección 4: Capa de Internet */}
+      {/* Sección 5 */}
       <section ref={section5Ref} className="section dark-section">
         <div className="content">
           <h2>Capa de Internet 🌍</h2>
@@ -159,6 +171,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Sección 6 */}
       <section ref={section6Ref} className="section light-section">
         <div className="content">
           <h2>Capa de Acceso a la Red 📡</h2>
@@ -179,6 +192,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Sección 7 */}
       <section ref={section7Ref} className="section light-section">
         <div className="content">
           <h2>Viaje de Vuelta 📥</h2>
@@ -197,6 +211,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Sección 8 */}
       <section ref={section8Ref} className="section dark-section">
         <div className="content">
           <h2>Capa de Acceso a la Red 📡</h2>
@@ -210,6 +225,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Sección 9 */}
       <section ref={section9Ref} className="section light-section">
         <div className="content">
           <h2>Capa de Internet 🌍</h2>
@@ -227,7 +243,7 @@ const LandingPage = () => {
         </div>
       </section>
 
-      {/* Sección 3: Capa de Transporte */}
+      {/* Sección 10 */}
       <section ref={section10Ref} className="section dark-section">
         <div className="content">
           <h2>Capa de Transporte 📦</h2>
@@ -247,6 +263,7 @@ const LandingPage = () => {
         </div>
       </section>
 
+      {/* Sección 11 */}
       <section ref={section11Ref} className="section light-section">
         <div className="content">
           <h2>Capa de Aplicación 👩‍💻</h2>
@@ -269,16 +286,13 @@ const LandingPage = () => {
             ></iframe>
           </div>
           <div className="navigation-buttons">
-            <button onClick={() => scrollToSection(section10Ref)}>
-              Volver
-            </button>
-            <button onClick={() => scrollToSection(section12Ref)}>
-              Siguiente punto
-            </button>
+            <button onClick={() => scrollToSection(section10Ref)}>Volver</button>
+            <button onClick={() => scrollToSection(section12Ref)}>Siguiente punto</button>
           </div>
         </div>
       </section>
 
+      {/* Sección 12 */}
       <section ref={section12Ref} className="section dark-section">
         <div className="content">
           <h2>El viaje de los datos a través de Internet</h2>
@@ -289,9 +303,7 @@ const LandingPage = () => {
             común: un usuario que recibe un video de Youtube y abre el link para
             poder visualizarlo
           </p>
-          <button onClick={() => scrollToSection(section1Ref)}>
-            ¡Volver al inicio!
-          </button>
+          <button onClick={() => scrollToSection(section1Ref)}>¡Volver al inicio!</button>
         </div>
       </section>
     </div>
