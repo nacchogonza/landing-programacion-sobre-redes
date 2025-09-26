@@ -305,21 +305,27 @@ const NetworkFlowVisualizer = () => {
     animate(performance.now());
 
     const handleResize = () => {
-      const newWidth = window.innerWidth * 0.8;
-      const newHeight = window.innerHeight * 0.6;
+      const newWidth = canvas.offsetWidth;
+      const newHeight = canvas.offsetHeight;
+
+      // Asignar las dimensiones internas al Canvas
       canvas.width = newWidth;
       canvas.height = newHeight;
-      elements.user1.x = newWidth * 0.1;
-      elements.user1.y = newHeight * 0.4;
-      elements.user2.x = newWidth * 0.1;
-      elements.user2.y = newHeight * 0.6;
-      elements.router1.x = newWidth * 0.4;
-      elements.router1.y = newHeight / 2;
-      elements.router2.x = newWidth * 0.6;
-      elements.router2.y = newHeight / 2;
-      elements.server.x = newWidth * 0.85;
-      elements.server.y = newHeight / 2;
+
+      // Recalcular posiciones solo si las dimensiones son válidas
+      if (newWidth > 0 && newHeight > 0) {
+        // ... (Tu lógica de posición de elementos, que ya usa newWidth/newHeight) ...
+        elements.user1.x = newWidth * 0.1;
+        elements.user1.y = newHeight * 0.4;
+        elements.user2.x = newWidth * 0.1;
+        // ... (resto de los cálculos de posición) ...
+        elements.server.x = newWidth * 0.85;
+        elements.server.y = newHeight / 2;
+      }
     };
+
+    handleResize();
+
     window.addEventListener("resize", handleResize);
 
     return () => {

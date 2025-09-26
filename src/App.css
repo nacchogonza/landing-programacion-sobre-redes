@@ -198,7 +198,6 @@ button:hover {
   margin: 1rem auto;
   width: 60%;
   max-height: 400px;
-  overflow: hidden;
 }
 
 /* Media query para dispositivos con un ancho máximo de 768px (móviles y tablets pequeñas) */
@@ -240,6 +239,8 @@ button:hover {
   }
 
   .network-traffic-container {
-    display: none;
+    margin: 1rem auto;
+    width: 100%;
+  
   }
 }

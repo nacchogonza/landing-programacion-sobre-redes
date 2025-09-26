@@ -284,29 +284,6 @@ const LandingPage = () => {
           <div className="network-traffic-container">
             <NetworkTraffic />
           </div>
-          <div className="navigation-buttons">
-            <button onClick={() => scrollToSection(section11Ref)}>
-              Volver
-            </button>
-            <button onClick={() => scrollToSection(section13Ref)}>
-              Siguiente punto
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Sección 12 */}
-      <section ref={section13Ref} className="section dark-section">
-        <div className="content">
-          <h2>El viaje de los datos a través de Internet</h2>
-          <h3>Un recorrido visual por las capas del modelo TCP/IP.</h3>
-          <p>
-            El objetivo es que podamos seguir el recorrido de los datos a través
-            de este popular modelo, tomando como ejemplo un caso de uso muy
-            común: un usuario que recibe un video de Youtube y abre el link para
-            poder visualizarlo
-          </p>
-
           <button onClick={() => scrollToSection(section1Ref)}>
             ¡Volver al inicio!
           </button>
