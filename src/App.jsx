@@ -1,6 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import "./App.css";
-import NetworkTraffic from "./NetworkTraffic";
+import NetworkTraffic from "./components/NetworkTraffic/NetworkTraffic";
 
 const LandingPage = () => {
   const section1Ref = useRef(null);
@@ -15,6 +15,7 @@ const LandingPage = () => {
   const section10Ref = useRef(null);
   const section11Ref = useRef(null);
   const section12Ref = useRef(null);
+  const section13Ref = useRef(null);
   const videoRef = useRef(null);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -45,7 +46,6 @@ const LandingPage = () => {
 
   return (
     <div className="landing-container">
-      {/* Sección 1: Introducción */}
       <section ref={section1Ref} className="section dark-section">
         <div className="content">
           <h2>El viaje de los datos a través de Internet</h2>
@@ -57,30 +57,10 @@ const LandingPage = () => {
             poder visualizarlo
           </p>
 
-          {/* Loop de NetworkTraffic ajustado */}
-          <div
-            style={{
-              margin: "1rem auto",
-              width: "60%",
-              maxHeight: "300px",
-              overflow: "hidden",
-            }}
-          >
-            <NetworkTraffic />
-          </div>
-
-          <button
-            style={{
-              display: "block",
-              margin: "1rem auto",
-              padding: "0.75rem 1.5rem",
-              fontSize: "1.2rem",
-              cursor: "pointer",
-            }}
-            onClick={() => scrollToSection(section2Ref)}
-          >
+          <button onClick={() => scrollToSection(section2Ref)}>
             ¡Empecemos!
           </button>
+          {/* Loop de NetworkTraffic ajustado */}
         </div>
       </section>
 
@@ -193,7 +173,7 @@ const LandingPage = () => {
       </section>
 
       {/* Sección 7 */}
-      <section ref={section7Ref} className="section light-section">
+      <section ref={section7Ref} className="section dark-section">
         <div className="content">
           <h2>Viaje de Vuelta 📥</h2>
           <h3>
@@ -212,7 +192,7 @@ const LandingPage = () => {
       </section>
 
       {/* Sección 8 */}
-      <section ref={section8Ref} className="section dark-section">
+      <section ref={section8Ref} className="section light-section">
         <div className="content">
           <h2>Capa de Acceso a la Red 📡</h2>
           <p>El paquete llega al servidor de YouTube a través de la red.</p>
@@ -226,7 +206,7 @@ const LandingPage = () => {
       </section>
 
       {/* Sección 9 */}
-      <section ref={section9Ref} className="section light-section">
+      <section ref={section9Ref} className="section dark-section">
         <div className="content">
           <h2>Capa de Internet 🌍</h2>
           <p>
@@ -244,7 +224,7 @@ const LandingPage = () => {
       </section>
 
       {/* Sección 10 */}
-      <section ref={section10Ref} className="section dark-section">
+      <section ref={section10Ref} className="section light-section">
         <div className="content">
           <h2>Capa de Transporte 📦</h2>
           <p>
@@ -264,7 +244,7 @@ const LandingPage = () => {
       </section>
 
       {/* Sección 11 */}
-      <section ref={section11Ref} className="section light-section">
+      <section ref={section11Ref} className="section dark-section">
         <div className="content">
           <h2>Capa de Aplicación 👩‍💻</h2>
           <p>
@@ -273,27 +253,50 @@ const LandingPage = () => {
             celular para que lo puedas ver. El video se ve fluido gracias a que
             el protocolo TCP aseguró que todos los paquetes llegaron en orden.
           </p>
-          <div className="video-container">
-            <iframe
-              ref={videoRef}
-              width="560"
-              height="315"
-              src={videoSrc}
-              title="YouTube video player"
-              frameBorder="0"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
-            ></iframe>
+          <div className="video-limiter">
+            <div className="video-container">
+              <iframe
+                ref={videoRef}
+                width="560"
+                height="315"
+                src={videoSrc}
+                title="YouTube video player"
+                frameBorder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              ></iframe>
+            </div>
           </div>
           <div className="navigation-buttons">
-            <button onClick={() => scrollToSection(section10Ref)}>Volver</button>
-            <button onClick={() => scrollToSection(section12Ref)}>Siguiente punto</button>
+            <button onClick={() => scrollToSection(section10Ref)}>
+              Volver
+            </button>
+            <button onClick={() => scrollToSection(section12Ref)}>
+              Siguiente punto
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <section ref={section12Ref} className="section light-section">
+        <div className="content">
+          <h2>Simulación de transferencia de datos por una red [Canva]</h2>
+          <div className="network-traffic-container">
+            <NetworkTraffic />
+          </div>
+          <div className="navigation-buttons">
+            <button onClick={() => scrollToSection(section11Ref)}>
+              Volver
+            </button>
+            <button onClick={() => scrollToSection(section13Ref)}>
+              Siguiente punto
+            </button>
           </div>
         </div>
       </section>
 
       {/* Sección 12 */}
-      <section ref={section12Ref} className="section dark-section">
+      <section ref={section13Ref} className="section dark-section">
         <div className="content">
           <h2>El viaje de los datos a través de Internet</h2>
           <h3>Un recorrido visual por las capas del modelo TCP/IP.</h3>
@@ -303,7 +306,10 @@ const LandingPage = () => {
             común: un usuario que recibe un video de Youtube y abre el link para
             poder visualizarlo
           </p>
-          <button onClick={() => scrollToSection(section1Ref)}>¡Volver al inicio!</button>
+
+          <button onClick={() => scrollToSection(section1Ref)}>
+            ¡Volver al inicio!
+          </button>
         </div>
       </section>
     </div>

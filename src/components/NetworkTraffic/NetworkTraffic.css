@@ -72,3 +72,56 @@
     border-left: 2px dashed #666;
     width: 0;
 }
+
+
+.section-container {
+    /* flex flex-col items-center justify-center */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    /* p-8 */
+    padding: 2rem; 
+
+    /* bg-gray-900 */
+    background-color: #1a202c; 
+
+    /* rounded-3xl */
+    border-radius: 1.5rem; 
+
+    /* shadow-2xl */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); 
+
+    /* m-4 */
+    margin: 1rem; 
+}
+
+/* -- Contenedor del Canvas (Reemplaza w-full flex justify-center) -- */
+.canvas-wrapper {
+    /* w-full flex justify-center */
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+/* -- Estilo del Canvas (Reemplaza bg-gray-800 rounded-2xl border border-gray-700 shadow-inner w-full h-auto y estilos en línea) -- */
+.canvas-style {
+    /* w-full h-auto y estilos en línea */
+    width: 100%;
+    max-width: 1200px;
+    aspect-ratio: 16 / 9; /* Mantiene la proporción 16:9 */
+    height: auto;
+    
+    /* bg-gray-800 */
+    background-color: #2d3748;
+
+    /* rounded-2xl */
+    border-radius: 1rem;
+
+    /* border border-gray-700 */
+    border: 1px solid #4a5568; 
+
+    /* shadow-inner */
+    box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); 
+}
