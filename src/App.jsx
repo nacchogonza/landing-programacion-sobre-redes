@@ -15,7 +15,6 @@ const LandingPage = () => {
   const section10Ref = useRef(null);
   const section11Ref = useRef(null);
   const section12Ref = useRef(null);
-  const section13Ref = useRef(null);
   const videoRef = useRef(null);
 
   const [isVisible, setIsVisible] = useState(false);
@@ -92,7 +91,8 @@ const LandingPage = () => {
           <p>
             Un usuario recibe un enlace de YouTube. Al tocar el enlace, la
             aplicación de WhatsApp (que actúa como un navegador en este caso)
-            envía una petición al servidor de YouTube.
+            envía una petición al servidor de YouTube. El navegador (o la
+            aplicación) genera una solicitud HTTP/HTTPS que es el dato a enviar
           </p>
           <div className="navigation-buttons">
             <button onClick={() => scrollToSection(section2Ref)}>Volver</button>
@@ -160,8 +160,11 @@ const LandingPage = () => {
             infraestructura física de la red.
           </h3>
           <p>
-            El paquete viaja por la red (Wi-Fi de tu casa o datos móviles) hasta
-            llegar al servidor de YouTube.
+            El paquete viaja por la red (Wi-Fi de o datos móviles) hasta llegar
+            al servidor de YouTube. Se añade la Cabecera de Trama (con las
+            direcciones MAC del próximo salto, usualmente el router). El paquete
+            final se convierte en bits (señales físicas) y se transmite a través
+            del medio (Wi-Fi o cable).
           </p>
           <div className="navigation-buttons">
             <button onClick={() => scrollToSection(section5Ref)}>Volver</button>
@@ -194,8 +197,13 @@ const LandingPage = () => {
       {/* Sección 8 */}
       <section ref={section8Ref} className="section light-section">
         <div className="content">
-          <h2>Capa de Acceso a la Red 📡</h2>
-          <p>El paquete llega al servidor de YouTube a través de la red.</p>
+          <h2>Desencapsulación ✅</h2>
+          <p>
+            Los bits llegan al servidor de Youtube y suben las capas (Acceso →
+            Internet → Transporte). TCP lee el número de secuencia, reensambla
+            tu solicitud y, automáticamente, envía un segmento ACK de vuelta al
+            celular que hizo la solicitud.
+          </p>
           <div className="navigation-buttons">
             <button onClick={() => scrollToSection(section7Ref)}>Volver</button>
             <button onClick={() => scrollToSection(section9Ref)}>
@@ -208,11 +216,12 @@ const LandingPage = () => {
       {/* Sección 9 */}
       <section ref={section9Ref} className="section dark-section">
         <div className="content">
-          <h2>Capa de Internet 🌍</h2>
+          <h2>Empaquetado del video 📦</h2>
           <p>
-            El servidor recibe el paquete y se da cuenta, gracias a la dirección
-            IP, de que el paquete es para él. El protocolo IP se encarga de
-            recibirlo.
+            YouTube busca el video. TCP lo divide en miles de nuevos segmentos
+            para el envío. Utiliza el Control de Flujo para decidir la velocidad
+            y no saturar tu celular. El video está listo para ser enviado capa
+            por capa de vuelta.
           </p>
           <div className="navigation-buttons">
             <button onClick={() => scrollToSection(section8Ref)}>Volver</button>
@@ -226,13 +235,12 @@ const LandingPage = () => {
       {/* Sección 10 */}
       <section ref={section10Ref} className="section light-section">
         <div className="content">
-          <h2>Capa de Transporte 📦</h2>
+          <h2>Reensamblaje 📺</h2>
           <p>
-            El servidor de YouTube, usando el protocolo TCP, lee los segmentos
-            de la petición, los reordena y confirma que el pedido está completo.
-            Luego, genera una respuesta con los segmentos del video que te va a
-            enviar. Y para cada segmento que envía, espera que el celular le dé
-            una confirmación de que lo recibió correctamente.
+            Los miles de segmentos de video llegan a tu celular. TCP verifica y
+            ordena cada paquete por su número de secuencia, solicitando la
+            retransmisión de cualquier paquete perdido. Una vez completo, el
+            archivo se entrega a la Capa de Aplicación.
           </p>
           <div className="navigation-buttons">
             <button onClick={() => scrollToSection(section9Ref)}>Volver</button>
@@ -246,12 +254,13 @@ const LandingPage = () => {
       {/* Sección 11 */}
       <section ref={section11Ref} className="section dark-section">
         <div className="content">
-          <h2>Capa de Aplicación 👩‍💻</h2>
+          <h2>Reproducción 👩‍💻</h2>
           <p>
-            El video viaja de vuelta, y el celular lo reensambla y lo reproduce
-            en la pantalla. WhatsApp le pasa el video al reproductor interno del
-            celular para que lo puedas ver. El video se ve fluido gracias a que
-            el protocolo TCP aseguró que todos los paquetes llegaron en orden.
+            El video viaja a través de las capas y el celular lo reensambla y lo
+            reproduce en la pantalla. WhatsApp le pasa el video al reproductor
+            interno del celular para que lo puedas ver. El video se ve fluido
+            gracias a que el protocolo TCP aseguró que todos los paquetes
+            llegaron en orden.
           </p>
           <div className="video-limiter">
             <div className="video-container">
